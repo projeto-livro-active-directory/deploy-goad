@@ -19,6 +19,9 @@ add-apt-repository -y multiverse
 # Get list of latest packages
 apt-get update
 
+# Install Git
+# apt install git
+
 # Make sure we're running on latest versions of things installed
 apt-get -y autoupdate
 
@@ -33,7 +36,8 @@ apt-get install -y git virtualbox python3-pip
 
 # Download GOAD
 cd /opt
-git clone https://github.com/Orange-Cyberdefense/GOAD goad
+#git clone https://github.com/Orange-Cyberdefense/GOAD goad
+sudo git clone https://github.com/projeto-livro-active-directory/GOAD goad
 
 # Install specific version of Vagrant
 wget https://releases.hashicorp.com/vagrant/2.2.18/vagrant_2.2.18_x86_64.deb
@@ -45,6 +49,9 @@ pip install --upgrade pip
 pip install ansible-core==2.12.6
 pip install pywinrm
 
+# Colocar path
+# alias pip='/home/desktop/.local/bin/ansible-galaxy'
+
 # Install stuff needed for Ansible
 ansible-galaxy install -r requirements.yml
 
@@ -55,6 +62,7 @@ vagrant plugin install winrm-elevated
 # Deploy VMs
 cd /opt/goad
 vagrant up
+# sudo vagrant up
 
 if [ $? -ne 0 ]; then
   echo "Deployment failed"
